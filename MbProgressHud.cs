@@ -518,12 +518,13 @@ namespace RedPlum
 	{
 		public MBRoundProgressView () : base(new RectangleF (0.0f, 0.0f, 37.0f, 37.0f))
 		{
+			// iOS7 has internal subviews, these need removing to allow the Draw override
+			foreach (var v in Subviews)
+				v.RemoveFromSuperview ();
 		}
 
 		public override void Draw (RectangleF rect)
 		{
-			
-			
 			RectangleF allRect = this.Bounds;
 			RectangleF circleRect = new RectangleF (allRect.Location.X + 2, allRect.Location.Y + 2, allRect.Size.Width - 4, allRect.Size.Height - 4);
 			
